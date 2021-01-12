@@ -1,0 +1,81 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todoList</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.0.0/dist/css/axentix.min.css" />
+  </head>
+<body>
+    <div class="grix xs1 sm3">
+        <div></div>
+        <div>
+            <input type="text" id="taskToAdd" class="form-control rounded-1" placeholder="Saisir votre tâche" />
+            <button  onclick="todo()">Ajouter</button>
+        </div>
+    </div>
+    <ul id="myList">
+    </ul>
+</body>
+</html>
+<!-- j'ai rendu un truc moche et qui marche pas bien. J'ai persisté sur un truc qui partait mal de base. Je ferais mieux la prochaine fois... -->
+<script>
+    function todo() {
+        
+        //create task
+        var task = document.getElementById('taskToAdd').value;
+        var li = document.createElement('li');
+        var t = document.createTextNode(task);
+        var tasktext = document.createElement('p');
+        tasktext.appendChild(t);
+        li.appendChild(tasktext);
+        document.getElementById("taskToAdd").value = "";
+
+        //display on screen
+        document.getElementById("myList").appendChild(li);
+
+        //modify button
+        var modifybutton = document.createElement("button");
+        modifybutton.className = "modify";
+        modifybutton.innerHTML = "Modify";
+        li.appendChild(modifybutton);
+
+        //delete button
+        var deletebutton = document.createElement("button");
+        deletebutton.className = "delete";
+        deletebutton.innerHTML = "Delete";
+        li.appendChild(deletebutton);
+
+        //done button
+        var donebutton = document.createElement("button");
+        donebutton.className = "done";
+        donebutton.innerHTML = "Done";
+        li.appendChild(donebutton);
+
+        var close = document.getElementsByClassName("delete");
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function() {
+                var div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+        var modify = document.getElementsByClassName("modify");
+        for (i = 0; i < modify.length; i++) {
+                modify[i].onclick = function() {
+                    var div = this.parentElement;
+                    var input = div.children[0].innerHTML;
+                    console.log(input);
+            }
+        }
+
+        var done = document.getElementsByClassName("done");
+        for (i = 0; i < done.length; i++) {
+            done[i].onclick = function() {
+                var div = this.parentElement;
+                div.style.backgroundColor = "green";
+            }
+        }
+    }
+</script>
+
+<style>
+</style>
