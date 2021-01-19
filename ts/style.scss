@@ -1,0 +1,10 @@
+@import './colors';
+
+.bbody{
+    background-color: black;
+}
+
+.body{
+    @extend .bbody;
+    color: $main-color;
+}
